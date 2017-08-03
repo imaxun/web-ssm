@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aly.ssm.mapper.UserMapper">
+    <sql id="query">
+      id,name,age,state,userId
+    </sql>
+    <select id="find" resultType="UserDTO" parameterType="User">
+        select
+        <include refid="query"/>
+        from user
+    </select>
+    <insert id="createCore" parameterType="list">
+        insert into user (name,age)
+        VALUES
+        <foreach collection="list" item="user" separator=",">
+            ( #{user.name}, #{user.age})
+        </foreach>
+    </insert>
+    <select id="findById" resultType="User" parameterType="int">
+        select
+        <include refid="query"/>
+        from user
+        <where>
+            <if test="_parameter != null and _parameter!= ''">
+                and userId =#{userId} and state =1
+            </if>
+        </where>
+    </select>
+
+    <!-- sql片段对应字段名,id属性值任意 -->
+    <sql id="key">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="id!=null and id!=''">
+                id,
+            </if>
+            <if test="userId!=null and userId!=''">
+                userId,
+            </if>
+            <if test="name!=null and name!=''">
+                name,
+            </if>
+            <if test="age!=null and age!=''">
+                age,
+            </if>
+            <if test="state!=null and state!=''">
+                state,
+            </if>
+        </trim>
+    </sql>
+    <!-- sql片段对应?,id属性值任意 -->
+    <sql id="value">
+        <!-- 去掉最后一个, -->
+        <trim suffixOverrides=",">
+            <if test="id!=null and id!=''">
+                #{id},
+            </if>
+            <if test="userId!=null and userId!=''">
+                #{userId},
+            </if>
+            <if test="name!=null and name!=''">
+                #{name},
+            </if>
+            <if test="age!=null and age!=''">
+                #{age},
+            </if>
+            <if test="state!=null and state!=''">
+                #{state},
+            </if>
+        </trim>
+    </sql>
+    <insert id="dynaInsert" useGeneratedKeys="true" keyProperty="id" parameterType="User">
+        insert into user(<include refid="key"/>) values(<include refid="value"/>)
+    </insert>
+</mapper>
