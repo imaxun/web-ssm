@@ -137,7 +137,7 @@ public class UserController extends commonLog {
             if (isacc == 0) {
                 removeKey(productInfo);
             }
-            long end = System.currentTimeMillis(); // 记录结束时间2
+            long end = System.currentTimeMillis(); // 记录结束时间
             System.out.println(("查询线程-消耗毫秒：" + (end - start)));
         }
         return result;
