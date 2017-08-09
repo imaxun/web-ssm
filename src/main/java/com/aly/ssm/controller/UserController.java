@@ -120,7 +120,7 @@ public class UserController extends commonLog {
                 result = ResultUtil.errorField("提示：用户的Id已存在：" + productInfo);
                 return result;
             } else {
-                System.out.println("----------3--------");
+                System.out.println("----------3---------");
 //                Thread.sleep(1000);
                 user.setState(1);
             }
