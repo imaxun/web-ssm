@@ -2,6 +2,7 @@ package com.aly.ssm.service;
 
 import com.aly.ssm.model.User;
 import com.aly.ssm.model.UserDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 

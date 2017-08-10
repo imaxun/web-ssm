@@ -1,44 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-                        http://www.springframework.org/schema/context
-                        http://www.springframework.org/schema/context/spring-context-3.1.xsd
-                        http://www.springframework.org/schema/tx
-                        http://www.springframework.org/schema/tx/spring-tx.xsd">
-
-    <!-- 自动扫描 -->
-    <context:component-scan base-package="com.aly.ssm"/>
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
     <!-- 第一种方式：加载一个properties文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties"/>
     </bean>
-    <!--<context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/>-->
 
 
-    <!-- 第二种方式：加载多个properties文件
-    <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="locations">
-            <list>
-                <value>classpath:jdbc.properties</value>
-                <value>classpath:common.properties</value>
-            </list>
-        </property>
-        <property name="fileEncoding" value="UTF-8"/>
-    </bean>
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
-        <property name="properties" ref="configProperties"/>
-    </bean>
-    -->
     <!-- 采用阿里云配置数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-        <property name="driverClassName" value="${driverClasss}"/>
-        <property name="url" value="${jdbcUrl}"/>
-        <property name="username" value="${username}"/>
-        <property name="password" value="${password}"/>
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
         <property name="initialSize" value="10"/>
         <!--  连接池支持的最大连接数-->
         <property name="maxActive" value="100"/>
@@ -63,7 +40,6 @@
         <property name="filters" value="stat"/>
     </bean>
 
-
     <!-- mybatis和spring完美整合，不需要mybatis的配置映射文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -84,6 +60,7 @@
         </property>
     </bean>
 
+
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.aly.ssm.mapper"/>
@@ -95,20 +72,5 @@
                 notEmpty=true
             </value>
         </property>
-    </bean>
-
-    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
-    <import resource="redis-context.xml"/>
-
-
-    <bean id="redisUtil" class="com.aly.ssm.uitl.RedisUtil">
-        <property name="redisTemplate" ref="redisTemplate"/>
     </bean>
 </beans>

@@ -1,8 +1,6 @@
-package com.aly.ssm.Test;
+package com.aly.ssm.test;
 
 
-import com.alibaba.fastjson.JSONObject;
-import com.aly.ssm.model.BorrowInfoExt;
 import com.aly.ssm.model.User;
 
 import java.io.BufferedReader;
