@@ -142,12 +142,4 @@ public class UserController extends commonLog {
         }
         return result;
     }
-
-//    public synchronized boolean isNull(Integer userId) {
-//        boolean isok = true;
-//        if (userService.findById(userId) != null) {
-//            return false;
-//        }
-//        return isok;
-//    }
 }
