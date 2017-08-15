@@ -14,8 +14,8 @@ import java.io.IOException;
 public class Test {
     public static void main(String[] args) {
         try {
-           User user= (User) Class.forName("com.aly.ssm.model.User").newInstance();
-            System.out.println(user);
+            String str = readFileByLines("d://11.txt");
+            System.out.println(str);
         } catch (Exception e) {
             e.printStackTrace();
         }

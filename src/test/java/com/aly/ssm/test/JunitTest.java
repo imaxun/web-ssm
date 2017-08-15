@@ -1,6 +1,5 @@
 package com.aly.ssm.test;
 
-import com.aly.ssm.model.User;
 import com.aly.ssm.model.UserDTO;
 import com.aly.ssm.service.UserService;
 import org.junit.Test;
