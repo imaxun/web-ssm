@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +33,7 @@ public class JacksonUtil {
         //日期统一格式
         MAPPER.setDateFormat(UtilDate.SIMPLE_DATE_FORMAT);
         //转义字符处理
-        MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true) ;
+        MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
     }
 
     /**
@@ -136,7 +137,7 @@ public class JacksonUtil {
     public static ObjectMapper getMapper() {
         return MAPPER;
     }
-    
+
     public static String list2Json(List list) {
         try {
             return MAPPER.writeValueAsString(list);
@@ -144,5 +145,17 @@ public class JacksonUtil {
             e.printStackTrace();
         }
         return "";
+    }
+
+    /**
+     * json --->  List
+     *
+     * @param json
+     * @param clazz
+     * @return
+     */
+    public static List json2List(String json, Class clazz) {
+        JSONArray json2 = JSONArray.fromObject(json);
+        return (List) JSONArray.toCollection(json2, clazz);
     }
 }
