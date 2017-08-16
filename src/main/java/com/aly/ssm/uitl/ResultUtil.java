@@ -7,7 +7,7 @@ package com.aly.ssm.uitl;
 public class ResultUtil {
     public static Result success(Object object) {
         Result result = new ResultSupport();
-        result.setCode("      ");
+        result.setCode("200");
         result.setMsg("成功");
         result.setModel(object);
         return result;
