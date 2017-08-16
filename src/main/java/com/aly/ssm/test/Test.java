@@ -1,12 +1,13 @@
 package com.aly.ssm.test;
 
 
-import com.aly.ssm.model.User;
+import com.alibaba.fastjson.JSONObject;
+import com.aly.ssm.model.Config;
+import com.aly.ssm.uitl.JacksonUtil;
+import net.sf.json.JSONArray;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.List;
 
 /**
  * Created by lizhen on 2017/7/12.
@@ -14,8 +15,19 @@ import java.io.IOException;
 public class Test {
     public static void main(String[] args) {
         try {
-           User user= (User) Class.forName("com.aly.ssm.model.User").newInstance();
-            System.out.println(user);
+            String str = readTxtFile("d://11.txt");
+            String json_str = JSONObject.parseObject(str).getJSONObject("model").getJSONObject("result").getString("data");
+//            List<Object> c = JacksonUtil.json2List(json_str);
+//            List<Config> list = new ArrayList<Config>();
+//            for (Object o : c) {
+//                Config borrow = JacksonUtil.json2Obj(JacksonUtil.bean2Json(o), Config.class);
+//                list.add(borrow);
+//            }
+
+            List<Config> list = JacksonUtil.json2List(json_str, Config.class);
+            for (Config config : list) {
+                System.out.println(config.getCode());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -46,6 +58,30 @@ public class Test {
                 } catch (IOException e1) {
                 }
             }
+        }
+        return str;
+    }
+
+    public static String readTxtFile(String filePath) {
+        String str = null;
+        try {
+            String encoding = "GBK";
+            File file = new File(filePath);
+            if (file.isFile() && file.exists()) { //判断文件是否存在
+                InputStreamReader read = new InputStreamReader(
+                        new FileInputStream(file), encoding);//考虑到编码格式
+                BufferedReader bufferedReader = new BufferedReader(read);
+                String lineTxt = null;
+                while ((lineTxt = bufferedReader.readLine()) != null) {
+                    str = lineTxt;
+                }
+                read.close();
+            } else {
+                System.out.println("找不到指定的文件");
+            }
+        } catch (Exception e) {
+            System.out.println("读取文件内容出错");
+            e.printStackTrace();
         }
         return str;
     }
