@@ -1,4 +1,4 @@
-package com.aly.ssm.uitl;
+package com.aly.ssm.util;
 
 import java.io.Serializable;
 

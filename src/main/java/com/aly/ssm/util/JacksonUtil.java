@@ -1,4 +1,4 @@
-package com.aly.ssm.uitl;
+package com.aly.ssm.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;

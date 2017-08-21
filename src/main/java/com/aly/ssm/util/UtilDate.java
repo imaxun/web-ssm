@@ -1,5 +1,5 @@
 
-package com.aly.ssm.uitl;
+package com.aly.ssm.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;

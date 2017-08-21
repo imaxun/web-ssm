@@ -3,7 +3,7 @@ package com.aly.ssm.test;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aly.ssm.model.Config;
-import com.aly.ssm.uitl.JacksonUtil;
+import com.aly.ssm.util.JacksonUtil;
 
 import java.io.*;
 import java.util.List;

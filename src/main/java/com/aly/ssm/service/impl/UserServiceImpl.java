@@ -4,7 +4,7 @@ import com.aly.ssm.mapper.UserMapper;
 import com.aly.ssm.model.User;
 import com.aly.ssm.model.UserDTO;
 import com.aly.ssm.service.UserService;
-import com.aly.ssm.uitl.model.commonLog;
+import com.aly.ssm.util.model.commonLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.aly.ssm.uitl;
+package com.aly.ssm.util;
 
 public class ResultSupport<T> implements Result<T> {
     private static final long serialVersionUID = -1802692098484483921L;
