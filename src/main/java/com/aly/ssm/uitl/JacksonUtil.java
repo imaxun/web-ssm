@@ -16,8 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: liuhao
+ * json 工具类
  */
 public class JacksonUtil {
 
