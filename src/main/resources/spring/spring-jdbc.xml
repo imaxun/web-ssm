@@ -40,6 +40,7 @@
         <property name="filters" value="stat"/>
     </bean>
 
+    <!-- httpClient 监控器 -->
     <bean destroy-method="close" id="httpClientConnectionManager"
           class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
         <!--最大链接数-->

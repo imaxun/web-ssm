@@ -113,9 +113,6 @@ public class UserController extends commonLog {
             }
             //校验用户的id必须唯一
             User isuser = userService.findById(productInfo);
-            int aa = 0;
-            int bb = 10;
-            System.out.println(bb / aa);
             if (isuser != null) {
                 result = ResultUtil.errorField("提示：用户的Id已存在：" + productInfo);
                 return result;

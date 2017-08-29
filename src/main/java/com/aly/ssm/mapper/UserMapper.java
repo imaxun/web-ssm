@@ -19,7 +19,7 @@ public interface UserMapper extends Mapper<User> {
      * @return
      * @throws Exception
      */
-    void createCore(List<User> list);
+    void createCore(List<User> list) throws Exception;
 
     void dynaInsert(User user);
 

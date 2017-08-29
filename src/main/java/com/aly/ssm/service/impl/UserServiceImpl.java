@@ -7,6 +7,7 @@ import com.aly.ssm.service.UserService;
 import com.aly.ssm.util.model.commonLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,15 +23,16 @@ public class UserServiceImpl extends commonLog implements UserService {
     public List<UserDTO> find(User user) {
         return userMapper.find(user);
     }
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class})
     public int save(User user) {
         userMapper.dynaInsert(user);
         return user.getId();
     }
 
-
-    public void createCore(List<User> list) {
+    @Transactional(noRollbackFor = {Exception.class, RuntimeException.class})
+    public void createCore(List<User> list) throws Exception {
         userMapper.createCore(list);
+        throw new Exception("注释");
     }
 
     public User findById(Integer id) {

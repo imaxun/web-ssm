@@ -2,7 +2,6 @@ package com.aly.ssm.service;
 
 import com.aly.ssm.model.User;
 import com.aly.ssm.model.UserDTO;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -21,7 +20,8 @@ public interface UserService {
      * @param list
      * @throws Exception
      */
-    void createCore(List<User> list);
+
+    void createCore(List<User> list) throws Exception;
 
     User findById(Integer id);
 }
