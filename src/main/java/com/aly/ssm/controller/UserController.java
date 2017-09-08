@@ -118,10 +118,9 @@ public class UserController extends commonLog {
                 return result;
             } else {
                 System.out.println("----------3---------");
-//                Thread.sleep(1000);
+                Thread.sleep(1000);
                 user.setState(1);
             }
-            throw new Exception("编号已经存在");
         } catch (Exception e) {
             isacc = 1;
             e.printStackTrace();

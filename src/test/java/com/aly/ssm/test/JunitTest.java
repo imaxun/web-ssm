@@ -24,12 +24,8 @@ public class JunitTest {
     @Test
     public void aa() throws  Exception{
         User user = new User();
-        user.setName("我的测试数据5");
-        User user2 = new User();
-        user2.setName("我的测试数据6");
-        List<User> lsit = new ArrayList<User>();
-        lsit.add(user);
-        lsit.add(user2);
-        userService.createCore(lsit);
+        user.setName("我的测试数据52");
+        user.setUserId(3322);
+        userService.save(user);
     }
 }

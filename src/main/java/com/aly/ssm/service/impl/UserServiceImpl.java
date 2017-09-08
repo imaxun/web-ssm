@@ -23,9 +23,10 @@ public class UserServiceImpl extends commonLog implements UserService {
     public List<UserDTO> find(User user) {
         return userMapper.find(user);
     }
+
     @Transactional(rollbackFor = {Exception.class, RuntimeException.class})
     public int save(User user) {
-        userMapper.dynaInsert(user);
+        userMapper.save(user);
         return user.getId();
     }
 

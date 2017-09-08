@@ -21,7 +21,7 @@ public interface UserMapper extends Mapper<User> {
      */
     void createCore(List<User> list) throws Exception;
 
-    void dynaInsert(User user);
+    void save(User user);
 
     User findById(Integer id);
 }
