@@ -22,7 +22,8 @@ public class JunitTest {
     public void aa() throws  Exception{
         User user = new User();
         user.setName("我的测试数据52");
-        user.setUserId(3322);
-        userService.save(user);
+        user.setId(6972);
+        int si = userService.find(user).size();
+        System.out.println(si);
     }
 }

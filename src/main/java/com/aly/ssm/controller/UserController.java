@@ -34,7 +34,7 @@ public class UserController extends commonLog {
 
     @RequestMapping(value = "/find", method = RequestMethod.POST)
     @ResponseBody
-    public Result find(User user) {
+    public Result find(@RequestBody User user) {
         Page<List<UserDTO>> page = null;
         ResultPageBean pageBean = null;
         try {
